@@ -26,3 +26,13 @@ def doLogin(request):
 
             messages.error(request,"Invalid Login Details")
             return HttpResponseRedirect("/")
+
+def GetUserDetails(request):
+    if request.user!=None:
+        return HttpResponse("User : "+request.user.email+" usertype : "+str(request.user.user_type))
+    else:
+        return HttpResponse("Please Login First")
+
+def logout_user(request):
+    logout(request)
+    return HttpResponseRedirect("/")
