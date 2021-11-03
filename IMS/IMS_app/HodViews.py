@@ -2,7 +2,7 @@ from django.http.response import HttpResponse
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib import messages
-from IMS_app.models import CustomUser,Staffs
+from IMS_app.models import CustomUser,Staffs,Courses
 
 def admin_home(request):
     return render(request,'hod_templates/home_content.html')
@@ -47,4 +47,4 @@ def add_course_save(request):
 
         except:
             messages.error(request,"Failed To Add Course")
-            return HttpResponseRedirect("/add_staff")
+            return HttpResponseRedirect("/add_course")
