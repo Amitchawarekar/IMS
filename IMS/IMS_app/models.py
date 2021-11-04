@@ -35,7 +35,7 @@ class Courses(models.Model):
 class Subjects(models.Model):
     id=models.AutoField(primary_key=True)
     subject_name=models.CharField(max_length=255)
-    course_id=models.ForeignKey(Courses,on_delete=models.CASCADE)
+    course_id=models.ForeignKey(Courses,on_delete=models.CASCADE,default=1)
     staff_id=models.ForeignKey(CustomUser,on_delete=models.CASCADE)
     created_at=models.DateTimeField(auto_now_add=True)
     updated_at=models.DateTimeField(auto_now_add=True)
@@ -44,7 +44,11 @@ class Subjects(models.Model):
 class Students(models.Model):
     id=models.AutoField(primary_key=True)
     admin=models.OneToOneField(CustomUser,on_delete=models.CASCADE)
+    date = models.DateTimeField(auto_now_add=True)
+    batch = models.CharField(max_length=255)
     gender=models.CharField(max_length=255)
+    contact=models.CharField(max_length=255)
+    dob=models.CharField(max_length=255)
     profile_pic=models.FileField()
     address=models.TextField()
     course_id=models.ForeignKey(Courses,on_delete=models.DO_NOTHING)
@@ -75,6 +79,19 @@ class AttendanceReport(models.Model):
 
 
 
+class StudentRecipt(models.Model):
+    id = models.AutoField(primary_key=True)
+    student_id = models.ForeignKey(Students, on_delete=models.CASCADE)
+    date = models.DateTimeField(auto_now_add=True)
+    course = models.CharField(max_length=255)
+    coursefees = models.IntegerField(max_length=255)
+    amountpaid = models.IntegerField(max_length=255)
+    paidby = models.CharField(max_length=255)
+    balance = models.IntegerField(max_length=255)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now_add=True)
+    objects = models.Manager()
+    
 class FeedBackStudent(models.Model):
     id = models.AutoField(primary_key=True)
     student_id = models.ForeignKey(Students, on_delete=models.CASCADE)
@@ -121,7 +138,7 @@ def create_user_profile(sender,instance,created,**kwargs):
         if instance.user_type==2:
             Staffs.objects.create(admin=instance)
         if instance.user_type==3:
-            Students.objects.create(admin=instance)
+            Students.objects.create(admin=instance,course_id=Courses.objects.get(id=1),session_start_year="2020-01-01",session_end_year="2021-01-01",address="",profile_pic="",gender="",date="",batch="",contact="",dob="")
 
 @receiver(post_save,sender=CustomUser)
 def save_user_profile(sender,instance,**kwargs):
