@@ -132,3 +132,6 @@ dmypy.json
 static
 #ignore media
 media
+
+#ignore notes
+notepad.txt
