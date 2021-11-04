@@ -63,6 +63,11 @@ def add_student_save(request):
         email = request.POST.get('email')
         password = request.POST.get('password')
         address = request.POST.get('address')
+        date = request.POST.get('date')
+        batch = request.POST.get('batch')
+        contact = request.POST.get('contact')
+        dob = request.POST.get('dob')
+
         session_start = request.POST.get('session_start')
         session_end = request.POST.get('session_end')
         course_id = request.POST.get('course')
@@ -70,7 +75,7 @@ def add_student_save(request):
         
         try:
             #Creating customuser
-            user = CustomUser.objects.create_user(username=username,password=password,email=email,user_type=3)
+            user = CustomUser.objects.create_user(username=username,password=password,email=email,first_name=first_name,last_name=last_name,user_type=3)
             user.students.address=address
             course_obj=Courses.objects.get(id=course_id)
             user.students.course_id=course_obj
@@ -78,6 +83,10 @@ def add_student_save(request):
             user.students.session_end_year=session_end
             user.students.profile_pic=""
             user.students.gender=sex
+            user.students.batch=batch
+            user.students.date=date
+            user.students.contact=contact
+            user.students.dob=dob
             user.save()
             messages.success(request,"Successfully Added Student")
             return HttpResponseRedirect("/add_student")
