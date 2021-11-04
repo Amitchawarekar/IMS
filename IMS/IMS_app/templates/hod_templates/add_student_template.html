@@ -19,6 +19,11 @@ Add Student
                         {% csrf_token %}
                         <div class="card-body">
                             <div class="form-group">
+                                <label>Date </label>
+                                <input type="date" class="form-control" name="date" placeholder="Enter Date">
+                            </div>
+
+                            <div class="form-group">
                                 <label>Email address</label>
                                 <input type="email" class="form-control" name="email" placeholder="Enter email">
                             </div>
@@ -37,7 +42,34 @@ Add Student
                                 <label>Last Name</label>
                                 <input type="text" class="form-control" placeholder="Last Name" name="last_name">
                             </div>
+
+                            <div class="form-group">
+                                <label>Batch</label>
+                                <select class="form-control" name="batch">
+                                    <option>January</option>
+                                    <option>February</option>
+                                    <option>March</option>
+                                    <option>April</option>
+                                    <option>May</option>
+                                    <option>June</option>
+                                    <option>July</option>
+                                    <option>August</option>
+                                    <option>September</option>
+                                    <option>October</option>
+                                    <option>November</option>
+                                    <option>December</option>
+                                </select>
+                            </div>
                             
+                            <div class="form-group">
+                                <label>Contact</label>
+                                <input type="number" class="form-control" placeholder="Enter Contact Number" name="contact">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Date of Birth</label>
+                                <input type="date" class="form-control" placeholder="Enter Date of Birth" name="dob">
+                            </div>
                             <div class="form-group">
                                 <label>Username</label>
                                 <input type="text" class="form-control" placeholder="Username" name="username">
