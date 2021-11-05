@@ -117,3 +117,7 @@ def add_subject_save(request):
         except:
             messages.error(request,"Failed to Add Subject")
             return HttpResponseRedirect("/add_subject")
+
+def manage_staff(request):
+    staffs = Staffs.objects.all()
+    return render(request, 'hod_templates/manage_staff_template.html',{'staffs':staffs})
