@@ -2,7 +2,7 @@ from django.http.response import HttpResponse
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib import messages
-from IMS_app.models import CustomUser,Staffs,Courses,Subjects
+from IMS_app.models import CustomUser,Staffs,Courses,Subjects,Students
 
 def admin_home(request):
     return render(request,'hod_templates/home_content.html')
@@ -121,3 +121,7 @@ def add_subject_save(request):
 def manage_staff(request):
     staffs = Staffs.objects.all()
     return render(request, 'hod_templates/manage_staff_template.html',{'staffs':staffs})
+
+def manage_student(request):
+    students = Students.objects.all()
+    return render(request, 'hod_templates/manage_student_template.html',{'students':students})
