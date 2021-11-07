@@ -166,3 +166,56 @@ def edit_staff_save(request):
         except:
             messages.error(request,"Failed to Edit Staff")
             return HttpResponseRedirect("/edit_staff/"+ staff_id)
+
+def edit_student(request,student_id):
+    courses = Courses.objects.all()
+    student =Students.objects.get(admin=student_id)
+    return render(request, 'hod_templates/edit_student_template.html',{'student':student, "courses" :courses})
+
+def edit_student_save(request):
+    if request.method!="POST":
+        return HttpResponse("<h2>Method Not Allowed</h2>")
+    else:
+        student_id=request.POST.get("student_id")
+        first_name = request.POST.get('first_name')
+        last_name = request.POST.get('last_name')
+        username = request.POST.get('username')
+        email = request.POST.get('email')
+        address = request.POST.get('address')
+        date = request.POST.get('date')
+        batch = request.POST.get('batch')
+        contact = request.POST.get('contact')
+        dob = request.POST.get('dob')
+
+        session_start = request.POST.get('session_start')
+        session_end = request.POST.get('session_end')
+        course_id = request.POST.get('course')
+        sex = request.POST.get('sex')
+        try:
+            user=CustomUser.objects.get(id=student_id)
+            user.first_name=first_name
+            user.last_name=last_name
+            user.email=email
+            user.username=username
+            user.students.address=address
+            course_obj=Courses.objects.get(id=course_id)
+            user.students.course_id=course_obj
+            user.students.session_start_year=session_start
+            user.students.session_end_year=session_end
+            user.students.profile_pic=""
+            user.students.gender=sex
+            user.students.batch=batch
+            user.students.date=date
+            user.students.contact=contact
+            user.students.dob=dob
+            user.save()
+
+            student = Students.objects.get(admin=student_id)
+            student.save()
+            messages.success(request,"Successfully Edited Student")
+            return HttpResponseRedirect("/edit_student/"+ student_id)
+        except:
+            messages.error(request,"Failed to Edit Student")
+            return HttpResponseRedirect("/edit_student/"+ student_id)
+
+

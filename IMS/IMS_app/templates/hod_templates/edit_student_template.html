@@ -1,0 +1,157 @@
+{% extends 'hod_templates/base_template.html' %}
+{% block page_title %}
+Edit Student | Username : {{ student.admin.username }} | ID : {{ student.admin.id }}
+{% endblock page_title %}
+{% block main_content %}
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <!-- general form elements -->
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">Edit Student</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form role="form" action="/edit_student_save" method="post">
+                        {% csrf_token %}
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label>Date </label>
+                                <input type="date" class="form-control" name="date" placeholder="Enter Date"
+                                    value="{{ student.date|date:"Y-m-d" }}">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Email address</label>
+                                <input type="email" class="form-control" name="email" placeholder="Enter email"
+                                    value="{{ student.admin.email }}">
+                            </div>
+
+
+                            <div class="form-group">
+                                <label>First Name</label>
+                                <input type="text" class="form-control" placeholder="First Name" name="first_name"
+                                    value="{{ student.admin.first_name }}">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Last Name</label>
+                                <input type="text" class="form-control" placeholder="Last Name" name="last_name"
+                                    value="{{ student.admin.last_name }}">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Batch</label>
+                                <select class="form-control" name="batch">
+                                    <option {% if student.batch == 'January' %} selected {% endif %} >January</option>
+                                    <option {% if student.batch == 'February' %} selected {% endif %}>February</option>
+                                    <option {% if student.batch == 'March' %} selected {% endif %}>March</option>
+                                    <option {% if student.batch == 'April' %} selected {% endif %}>April</option>
+                                    <option {% if student.batch == 'May' %} selected {% endif %}>May</option>
+                                    <option {% if student.batch == 'June' %} selected {% endif %}>June</option>
+                                    <option {% if student.batch == 'July' %} selected {% endif %}>July</option>
+                                    <option {% if student.batch == 'August' %} selected {% endif %}>August</option>
+                                    <option {% if student.batch == 'September' %} selected {% endif %}>September</option>
+                                    <option {% if student.batch == 'October' %} selected {% endif %}>October</option>
+                                    <option {% if student.batch == 'November' %} selected {% endif %}>November</option>
+                                    <option {% if student.batch == 'December' %} selected {% endif %}>December</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Contact</label>
+                                <input type="number" class="form-control" placeholder="Enter Contact Number"
+                                    name="contact" value="{{ student.contact }}">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Date of Birth</label>
+                                <input type="date" class="form-control" placeholder="Enter Date of Birth" name="dob"
+                                    value="{{ student.dob }}">
+                            </div>
+                            <div class="form-group">
+                                <label>Username</label>
+                                <input type="text" class="form-control" placeholder="Username" name="username"
+                                    value="{{ student.admin.username }}">
+                                <input type="hidden" name="student_id" value={{student.admin.id }}>
+                                </div>
+
+
+
+                            <div class="form-group">
+                                <label>Course</label>
+                                <select class="form-control" name="course">
+                                    {% for course in courses %}
+                                    <option value="{{ course.id }}" {% if course.id == student.course_id.id %} selected {% endif %} >{{ course.course_name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Address</label>
+                                <input type="text" class="form-control" placeholder="Address" name="address"
+                                    value="{{ student.address }}">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Sex</label>
+                                <select class="form-control" name="sex">
+                                    <option {% if student.gender == "Male" %} selected {% endif %}>Male</option>
+                                    <option {% if student.gender == "Female" %} selected {% endif %}>Female</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Session Start </label>
+                                <input type="date" class="form-control" placeholder="Seesion Start "
+                                    name="session_start" value="{{ student.session_start_year|date:"Y-m-d" }}">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Session End </label>
+                                <input type="date" class="form-control" placeholder="Seesion Start "
+                                    name="session_end" value="{{ student.session_end_year|date:"Y-m-d" }}">
+                            </div>
+
+
+
+
+
+
+
+
+
+                            <div class="form-group">
+                                {% if messages %}
+                                {% for message in messages %}
+                                {% if message.tags == 'error' %}
+                                <div class="alert alert-danger" style="margin-top:10px">{{ message }}</div>
+                                {% endif %}
+                                {% if message.tags == 'success' %}
+                                <div class="alert alert-success" style="margin-top:10px">{{ message }}</div>
+                                {% endif %}
+                                {% endfor %}
+                                {% endif %}
+                            </div>
+
+                        </div>
+                        <!-- /.card-body -->
+
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-primary btn-block">Save Student</button>
+                        </div>
+                    </form>
+                </div>
+                <!-- /.card -->
+
+
+
+            </div>
+        </div>
+    </div>
+</section>
+<!-- /.content -->
+{% endblock main_content %}

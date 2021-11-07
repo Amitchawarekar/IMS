@@ -44,7 +44,7 @@ class Subjects(models.Model):
 class Students(models.Model):
     id=models.AutoField(primary_key=True)
     admin=models.OneToOneField(CustomUser,on_delete=models.CASCADE)
-    date = models.DateTimeField(auto_now_add=True)
+    date = models.DateField()
     batch = models.CharField(max_length=255)
     gender=models.CharField(max_length=255)
     contact=models.CharField(max_length=255)
