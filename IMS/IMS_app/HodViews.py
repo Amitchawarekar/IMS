@@ -146,7 +146,7 @@ def manage_subject(request):
 
 def edit_staff(request,staff_id):
     staff =Staffs.objects.get(admin=staff_id)
-    return render(request, 'hod_templates/edit_staff_template.html',{'staff':staff})
+    return render(request, 'hod_templates/edit_staff_template.html',{'staff':staff,"id":staff_id})
 
 def edit_staff_save(request):
     if request.method!="POST":
@@ -179,7 +179,7 @@ def edit_staff_save(request):
 def edit_student(request,student_id):
     courses = Courses.objects.all()
     student =Students.objects.get(admin=student_id)
-    return render(request, 'hod_templates/edit_student_template.html',{'student':student, "courses" :courses})
+    return render(request, 'hod_templates/edit_student_template.html',{'student':student, "courses" :courses,"id":student_id})
 
 def edit_student_save(request):
     if request.method!="POST":
@@ -201,7 +201,7 @@ def edit_student_save(request):
         course_id = request.POST.get('course')
         sex = request.POST.get('sex')
 
-        if request.FILES['profile_pic']:
+        if request.FILES.get('profile_pic',False):
             profile_pic=request.FILES['profile_pic']
             fs = FileSystemStorage()
             filename=fs.save(profile_pic.name,profile_pic)
@@ -245,7 +245,7 @@ def edit_subject(request ,subject_id):
     subject = Subjects.objects.get(id=subject_id)
     courses = Courses.objects.all()
     staffs = CustomUser.objects.filter(user_type=2)
-    return render(request, 'hod_templates/edit_subject_template.html',{'subject':subject , 'courses':courses, 'staffs':staffs})
+    return render(request, 'hod_templates/edit_subject_template.html',{'subject':subject , 'courses':courses, 'staffs':staffs,"id":subject_id})
 
 def edit_subject_save(request):
     if request.method!="POST":
@@ -277,7 +277,7 @@ def edit_subject_save(request):
 
 def edit_course(request, course_id):
     course =Courses.objects.get(id=course_id)
-    return render(request, 'hod_templates/edit_course_template.html',{'course':course})
+    return render(request, 'hod_templates/edit_course_template.html',{'course':course,"id":course_id})
 
 def edit_course_save(request):
     if request.method!="POST":
