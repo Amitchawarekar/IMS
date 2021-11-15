@@ -45,8 +45,8 @@ urlpatterns = [
     path('edit_student/<str:student_id>',HodViews.edit_student),    
     path('edit_student_save',HodViews.edit_student_save),
 
-    # path('edit_subject/<str:subject_id>',HodViews.edit_subject),    
-    # path('edit_subject_save',HodViews.edit_subject_save),    
+    path('edit_subject/<str:subject_id>',HodViews.edit_subject),    
+    path('edit_subject_save',HodViews.edit_subject_save),    
     path('edit_course/<str:course_id>',HodViews.edit_course),    
     path('edit_course_save',HodViews.edit_course_save),    
 
