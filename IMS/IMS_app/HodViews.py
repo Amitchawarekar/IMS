@@ -1,5 +1,6 @@
 from django.http.response import HttpResponse
 from django.shortcuts import render
+from django.core.files.storage import FileSystemStorage
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib import messages
 from IMS_app.models import CustomUser,Staffs,Courses,Subjects,Students
@@ -72,6 +73,11 @@ def add_student_save(request):
         session_end = request.POST.get('session_end')
         course_id = request.POST.get('course')
         sex = request.POST.get('sex')
+
+        profile_pic=request.FILES['profile_pic']
+        fs = FileSystemStorage()
+        filename=fs.save(profile_pic.name,profile_pic)
+        profile_pic_url=fs.url(filename)
         
         try:
             #Creating customuser
@@ -81,7 +87,7 @@ def add_student_save(request):
             user.students.course_id=course_obj
             user.students.session_start_year=session_start
             user.students.session_end_year=session_end
-            user.students.profile_pic=""
+            user.students.profile_pic=profile_pic_url
             user.students.gender=sex
             user.students.batch=batch
             user.students.date=date
@@ -90,7 +96,10 @@ def add_student_save(request):
             user.save()
             messages.success(request,"Successfully Added Student")
             return HttpResponseRedirect("/add_student")
-        except:
+        except Exception as e:
+
+            print(e)
+            raise e
             messages.error(request,"Failed to Add Student")
             return HttpResponseRedirect("/add_student")
 
@@ -191,30 +200,44 @@ def edit_student_save(request):
         session_end = request.POST.get('session_end')
         course_id = request.POST.get('course')
         sex = request.POST.get('sex')
+
+        if request.FILES['profile_pic']:
+            profile_pic=request.FILES['profile_pic']
+            fs = FileSystemStorage()
+            filename=fs.save(profile_pic.name,profile_pic)
+            profile_pic_url=fs.url(filename)
+        else:
+            profile_pic_url =None
+
         try:
             user=CustomUser.objects.get(id=student_id)
             user.first_name=first_name
             user.last_name=last_name
             user.email=email
             user.username=username
-            user.students.address=address
-            course_obj=Courses.objects.get(id=course_id)
-            user.students.course_id=course_obj
-            user.students.session_start_year=session_start
-            user.students.session_end_year=session_end
-            user.students.profile_pic=""
-            user.students.gender=sex
-            user.students.batch=batch
-            user.students.date=date
-            user.students.contact=contact
-            user.students.dob=dob
             user.save()
 
-            student = Students.objects.get(admin=student_id)
+            student = Students.objects.get(id=student_id)
+            student.address=address
+            student.session_start_year=session_start
+            student.session_end_year=session_end
+            course_obj=Courses.objects.get(id=course_id)
+            user.students.course_id=course_obj
+            
+            if profile_pic_url !=None:
+                student.profile_pic= profile_pic_url
+            student.gender=sex
+            student.batch=batch
+            student.date=date
+            student.contact=contact
+            student.dob=dob
             student.save()
+
             messages.success(request,"Successfully Edited Student")
             return HttpResponseRedirect("/edit_student/"+ student_id)
-        except:
+        except Exception as e:
+            print(e)
+            raise e
             messages.error(request,"Failed to Edit Student")
             return HttpResponseRedirect("/edit_student/"+ student_id)
 
