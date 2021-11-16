@@ -22,7 +22,7 @@ from IMS import settings
 urlpatterns = [
     path('demo',views.showDemoPage),
     path('admin/', admin.site.urls),
-    path('',views.ShowLoginPage),
+    path('',views.ShowLoginPage, name='show_login'),
     path('get_user_details', views.GetUserDetails),
     path('logout_user', views.logout_user, name='logout_user'),
     path('doLogin',views.doLogin, name='doLogin'),
