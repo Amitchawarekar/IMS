@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.conf.urls.static import static
-from IMS_app import views,HodViews
+from IMS_app import views,HodViews,StaffViews,StudentViews
 
 from IMS import settings
 urlpatterns = [
@@ -24,7 +24,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.ShowLoginPage),
     path('get_user_details', views.GetUserDetails),
-    path('logout_user', views.logout_user, name='logout'),
+    path('logout_user', views.logout_user, name='logout_user'),
     path('doLogin',views.doLogin, name='doLogin'),
     path('admin_home',HodViews.admin_home, name='admin_home'),
     path('add_staff',HodViews.add_staff, name='add_staff'),
@@ -48,6 +48,12 @@ urlpatterns = [
     path('edit_subject_save',HodViews.edit_subject_save, name='edit_subject_save'),    
     path('edit_course/<str:course_id>',HodViews.edit_course, name='edit_course'),    
     path('edit_course_save',HodViews.edit_course_save, name='edit_course_save'),    
+
+    #Staff URL Path
+    path('staff_home',StaffViews.staff_home, name='staff_home'),
+
+    #Student URL Path
+    path('student_home',StudentViews.student_home, name='student_home'),
 
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)+static(settings.STATIC_URL,document_root=settings.STATIC_ROOT)
 
