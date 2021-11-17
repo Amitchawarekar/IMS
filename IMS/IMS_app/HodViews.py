@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.core.files.storage import FileSystemStorage
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib import messages
-from IMS_app.models import CustomUser,Staffs,Courses,Subjects,Students
+from IMS_app.models import CustomUser,Staffs,Courses,Subjects,Students, SessionYearModel
 from IMS_app.forms import AddStudentForm, EditStudentForm
 from django.urls import reverse
 def admin_home(request):
@@ -322,6 +322,23 @@ def edit_course_save(request):
             return HttpResponseRedirect(reverse("edit_course", kwargs={"course_id":course_id}))
         
 
+def manage_session(request):
+    return render(request, 'hod_templates/manage_session_template.html')
 
+def add_session_duration_save(request):
+    if request.method!="POST":
+        return HttpResponseRedirect(reverse("manage_session"))
+    else:
+        session_start=request.POST.get("session_start")
+        session_end=request.POST.get("session_end")
+
+        try:
+            sessionduration=SessionYearModel(session_start_year=session_start,session_end_year=session_end)
+            sessionduration.save()
+            messages.success(request, "Successfully Added Session")
+            return HttpResponseRedirect(reverse("manage_session"))
+        except:
+            messages.error(request, "Failed to Add Session")
+            return HttpResponseRedirect(reverse("manage_session"))
 
 

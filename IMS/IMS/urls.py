@@ -48,6 +48,8 @@ urlpatterns = [
     path('edit_subject_save',HodViews.edit_subject_save, name='edit_subject_save'),    
     path('edit_course/<str:course_id>',HodViews.edit_course, name='edit_course'),    
     path('edit_course_save',HodViews.edit_course_save, name='edit_course_save'),    
+    path('manage_session',HodViews.manage_session, name='manage_session'),    
+    path('add_session_duration_save',HodViews.add_session_duration_save, name='add_session_duration_save'),    
 
     #Staff URL Path
     path('staff_home',StaffViews.staff_home, name='staff_home'),

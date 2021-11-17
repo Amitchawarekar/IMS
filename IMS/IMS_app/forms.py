@@ -7,11 +7,16 @@ class DateInput(forms.DateInput):
 
 class AddStudentForm(forms.Form):
 
-    courses=Courses.objects.all()
     course_list=[]
-    for course in courses:
-        small_course=(course.id,course.course_name)
-        course_list.append(small_course)
+    try:
+        courses=Courses.objects.all()
+    
+        for course in courses:
+            small_course=(course.id,course.course_name)
+            course_list.append(small_course)
+    except:
+        course_list=[]
+
 
     gender_choice=(
         ("Male","Male"),
@@ -51,11 +56,15 @@ class AddStudentForm(forms.Form):
 
 class EditStudentForm(forms.Form):
 
-    courses=Courses.objects.all()
     course_list=[]
-    for course in courses:
-        small_course=(course.id,course.course_name)
-        course_list.append(small_course)
+    try:
+        courses=Courses.objects.all()
+        for course in courses:
+            small_course=(course.id,course.course_name)
+            course_list.append(small_course)
+    except:
+        course_list=[]
+
 
     gender_choice=(
         ("Male","Male"),

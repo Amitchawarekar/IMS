@@ -101,6 +101,16 @@
                 </a>
               </li>
 
+              <li class="nav-item">
+                {% url 'manage_session' as manage_session %}
+                <a href="{% url 'manage_session' %}" class="nav-link {% if request.path == manage_session %} active {% endif %}">
+                  <i class="nav-icon fas fa-th"></i>
+                  <p>
+                    Manage Session Duration
+                  </p>
+                </a>
+              </li>
+
           <li class="nav-item">
             <a href="add_staff" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
