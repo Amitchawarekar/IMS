@@ -72,8 +72,7 @@ def add_student_save(request):
             contact = form.cleaned_data['contact']
             dob = form.cleaned_data['dob']
 
-            session_start = form.cleaned_data['session_start']
-            session_end = form.cleaned_data['session_end']
+            session_year_id = form.cleaned_data['session_year_id']
             course_id = form.cleaned_data['course']
             sex = form.cleaned_data['sex']
 
@@ -88,8 +87,8 @@ def add_student_save(request):
                 user.students.address=address
                 course_obj=Courses.objects.get(id=course_id)
                 user.students.course_id=course_obj
-                user.students.session_start_year=session_start
-                user.students.session_end_year=session_end
+                session_duration = SessionYearModel.object.get(id=session_year_id)
+                user.students.session_year_id=session_duration
                 user.students.profile_pic=profile_pic_url
                 user.students.gender=sex
                 user.students.batch=batch
@@ -193,8 +192,7 @@ def edit_student(request,student_id):
     form.fields['sex'].initial=student.gender
     form.fields['contact'].initial=student.contact
     form.fields['dob'].initial=student.dob
-    form.fields['session_start'].initial=student.session_start_year
-    form.fields['session_end'].initial=student.session_end_year
+    form.fields['session_year_id'].initial=student.session_year_id
     form.fields['course'].initial=student.course_id.id
     return render(request, 'hod_templates/edit_student_template.html',{"form":form,"id":student_id,"username":student.admin.username})
 
@@ -218,8 +216,7 @@ def edit_student_save(request):
             contact = form.cleaned_data['contact']
             dob = form.cleaned_data['dob']
 
-            session_start = form.cleaned_data['session_start']
-            session_end = form.cleaned_data['session_end']
+            session_year_id = form.cleaned_data['session_year_id']
             course_id = form.cleaned_data['course']
             sex = form.cleaned_data['sex']
 
@@ -242,8 +239,9 @@ def edit_student_save(request):
 
                 student = Students.objects.get(id=student_id)
                 student.address=address
-                student.session_start_year=session_start
-                student.session_end_year=session_end
+                session_duration = SessionYearModel.object.get(id=session_year_id)
+                student.session_year_id=session_duration
+               
                 course_obj=Courses.objects.get(id=course_id)
                 user.students.course_id=course_obj
                 
