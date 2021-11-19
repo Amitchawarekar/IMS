@@ -60,6 +60,8 @@ urlpatterns = [
     path('get_attendance_student',StaffViews.get_attendance_student, name='get_attendance_student'),
     path('save_attendance_data',StaffViews.save_attendance_data, name='save_attendance_data'),
     path('save_updateattendance_data',StaffViews.save_updateattendance_data, name='save_updateattendance_data'),
+    path('staff_feedback',StaffViews.staff_feedback, name='staff_feedback'),
+    path('staff_feedback_save',StaffViews.staff_feedback_save, name='staff_feedback_save'),
 
     #Student URL Path
     path('student_home',StudentViews.student_home, name='student_home'),

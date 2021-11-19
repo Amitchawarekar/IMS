@@ -3,8 +3,10 @@ from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 import json
 from django.core import serializers
+from django.urls import reverse
+from django.contrib import messages
 
-from IMS_app.models import SessionYearModel, Students, Subjects,  Attendance ,AttendanceReport
+from IMS_app.models import SessionYearModel, Students, Subjects,  Attendance ,AttendanceReport, Staffs, FeedBackStaffs
 
 
 def staff_home(request):
@@ -110,3 +112,25 @@ def save_updateattendance_data(request):
         return HttpResponse("OK")
     except:
         return HttpResponse("ERR")
+
+
+def staff_feedback(request):
+     staff_id=Staffs.objects.get(admin=request.user.id)
+     feedback_data=FeedBackStaffs.objects.filter(staff_id=staff_id)
+     return render(request,"staff_templates/staff_feedback_template.html",{"feedback_data":feedback_data})
+
+def staff_feedback_save(request):
+    if request.method!="POST":
+        return HttpResponseRedirect(reverse("staff_feedback_save"))
+    else:
+        feedback_msg=request.POST.get("feedback_msg")
+
+        staff_obj=Staffs.objects.get(admin=request.user.id)
+        try:
+            feedback=FeedBackStaffs(staff_id=staff_obj,feedback=feedback_msg,feedback_reply="")
+            feedback.save()
+            messages.success(request, "Successfully Sent Feedback")
+            return HttpResponseRedirect(reverse("staff_feedback"))
+        except:
+            messages.error(request, "Failed To Send Feedback")
+            return HttpResponseRedirect(reverse("staff_feedback"))
