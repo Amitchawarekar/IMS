@@ -62,7 +62,7 @@ ROOT_URLCONF = 'IMS.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['IMS_app/templates/'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -142,3 +142,14 @@ AUTHENTICATION_BACKENDS = ['IMS_app.EmailBackEnd.EmailBackEnd']
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# EMAIL_BACKEND ="django.core.mail.backends.filebased.EmailBackend"
+# EMAIL_FILE_PATH = os.path.join(BASE_DIR, "sent_mails")  
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMIAL_PORT = 587
+EMAIL_HOST_USER = "amit.chawarekar@gmail.com"
+EMAIL_HOST_PASSWORD ="klywnpmajjldsfon"
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = "Institute Management System <amit.chawarekar@gmail.com>"

@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path,include
 from django.conf.urls.static import static
 from IMS_app import views,HodViews,StaffViews,StudentViews
 
@@ -22,6 +22,7 @@ from IMS import settings
 urlpatterns = [
     path('demo',views.showDemoPage),
     path('admin/', admin.site.urls),
+    path('accounts/',include('django.contrib.auth.urls')),
     path('',views.ShowLoginPage, name='show_login'),
     path('get_user_details', views.GetUserDetails),
     path('logout_user', views.logout_user, name='logout_user'),
@@ -65,6 +66,8 @@ urlpatterns = [
 
     #Student URL Path
     path('student_home',StudentViews.student_home, name='student_home'),
+    path('student_view_attendance',StudentViews.student_view_attendance, name='student_view_attendance'),
+    path('student_view_attendance_post',StudentViews.student_view_attendance_post, name='student_view_attendance_post'),
 
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)+static(settings.STATIC_URL,document_root=settings.STATIC_ROOT)
 
