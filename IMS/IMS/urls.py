@@ -52,6 +52,7 @@ urlpatterns = [
     path('manage_session',HodViews.manage_session, name='manage_session'),    
     path('add_session_duration_save',HodViews.add_session_duration_save, name='add_session_duration_save'),
     path('check_email_exist',HodViews.check_email_exist, name='check_email_exist'),
+    path('check_username_exist',HodViews.check_username_exist, name='check_username_exist'),
 
 
     #Staff URL Path
