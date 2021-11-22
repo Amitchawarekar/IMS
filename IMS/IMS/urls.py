@@ -50,7 +50,9 @@ urlpatterns = [
     path('edit_course/<str:course_id>',HodViews.edit_course, name='edit_course'),    
     path('edit_course_save',HodViews.edit_course_save, name='edit_course_save'),    
     path('manage_session',HodViews.manage_session, name='manage_session'),    
-    path('add_session_duration_save',HodViews.add_session_duration_save, name='add_session_duration_save'),    
+    path('add_session_duration_save',HodViews.add_session_duration_save, name='add_session_duration_save'),
+    path('check_email_exist',HodViews.check_email_exist, name='check_email_exist'),
+
 
     #Staff URL Path
     path('staff_home',StaffViews.staff_home, name='staff_home'),
@@ -68,6 +70,8 @@ urlpatterns = [
     path('student_home',StudentViews.student_home, name='student_home'),
     path('student_view_attendance',StudentViews.student_view_attendance, name='student_view_attendance'),
     path('student_view_attendance_post',StudentViews.student_view_attendance_post, name='student_view_attendance_post'),
-
+    path('student_feedback',StudentViews.student_feedback, name='student_feedback'),
+    path('student_feedback_save',StudentViews.student_feedback_save, name='student_feedback_save'),
+    
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)+static(settings.STATIC_URL,document_root=settings.STATIC_ROOT)
 
