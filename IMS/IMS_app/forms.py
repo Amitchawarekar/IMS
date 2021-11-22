@@ -46,14 +46,14 @@ class AddStudentForm(forms.Form):
         session_list=[]
 
     date=forms.DateField(label="Date",widget=DateInput(attrs={"class":"form-control"}))
-    email=forms.EmailField(label="Email",max_length=50,widget=forms.EmailInput(attrs={"class":"form-control"}))
+    email=forms.EmailField(label="Email",max_length=50,widget=forms.EmailInput(attrs={"class":"form-control","autocomplete":"off"}))
     password=forms.CharField(label="Password",max_length=50,widget=forms.PasswordInput(attrs={"class":"form-control"}))
     first_name=forms.CharField(label="First Name",max_length=50,widget=forms.TextInput(attrs={"class":"form-control"}))
     last_name=forms.CharField(label="Last Name",max_length=50,widget=forms.TextInput(attrs={"class":"form-control"}))
     batch=forms.ChoiceField(label="Batch",choices=batch_choice,widget=forms.Select(attrs={"class":"form-control"}))
     contact=forms.CharField(label="Contact Number",max_length=50,widget=NumberInput(attrs={"class":"form-control"}))
     dob=forms.DateField(label="Date of Birth",widget=DateInput(attrs={"class":"form-control"}))
-    username=forms.CharField(label="Username",max_length=50,widget=forms.TextInput(attrs={"class":"form-control"}))
+    username=forms.CharField(label="Username",max_length=50,widget=forms.TextInput(attrs={"class":"form-control","autocomplete":"off"}))
     course=forms.ChoiceField(label="Course",choices=course_list,widget=forms.Select(attrs={"class":"form-control"}))
     address=forms.CharField(label="Address",max_length=50,widget=forms.TextInput(attrs={"class":"form-control"}))
     sex=forms.ChoiceField(label="Gender",choices=gender_choice,widget=forms.Select(attrs={"class":"form-control"}))
