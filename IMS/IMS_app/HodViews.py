@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.core.files.storage import FileSystemStorage
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib import messages
-from IMS_app.models import CustomUser,Staffs,Courses,Subjects,Students, SessionYearModel
+from IMS_app.models import CustomUser,Staffs,Courses,Subjects,Students, SessionYearModel, FeedBackStudent, FeedBackStaffs
 from IMS_app.forms import AddStudentForm, EditStudentForm
 from django.urls import reverse
 from django.views.decorators.csrf import csrf_exempt
@@ -359,4 +359,36 @@ def check_username_exist(request):
     else:
         return HttpResponse(False)
 
+def staff_feedback_message(request):
+    feedbacks = FeedBackStaffs.objects.all()
+    return render(request, 'hod_templates/staff_feedback_template.html',{'feedbacks':feedbacks})
 
+def student_feedback_message(request):
+    feedbacks = FeedBackStudent.objects.all()
+    return render(request, 'hod_templates/student_feedback_template.html',{'feedbacks':feedbacks})
+
+@csrf_exempt
+def student_feedback_message_replied(request):
+    feedback_id=request.POST.get("id")
+    feedback_message=request.POST.get("message")
+
+    try:
+        feedback=FeedBackStudent.objects.get(id=feedback_id)
+        feedback.feedback_reply=feedback_message
+        feedback.save()
+        return HttpResponse("True")
+    except:
+        return HttpResponse("False")
+
+@csrf_exempt
+def staff_feedback_message_replied(request):
+    feedback_id=request.POST.get("id")
+    feedback_message=request.POST.get("message")
+
+    try:
+        feedback=FeedBackStaffs.objects.get(id=feedback_id)
+        feedback.feedback_reply=feedback_message
+        feedback.save()
+        return HttpResponse("True")
+    except:
+        return HttpResponse("False")
