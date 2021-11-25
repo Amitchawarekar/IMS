@@ -104,7 +104,7 @@
               <li class="nav-item">
                 {% url 'manage_session' as manage_session %}
                 <a href="{% url 'manage_session' %}" class="nav-link {% if request.path == manage_session %} active {% endif %}">
-                  <i class="nav-icon fas fa-th"></i>
+                 
                   <p>
                     Manage Session Duration
                   </p>
@@ -112,11 +112,12 @@
               </li>
 
           <li class="nav-item">
-            <a href="add_staff" class="nav-link">
+            {% url 'admin_view_attendance' as admin_view_attendance %}
+            <a href="{% url 'admin_view_attendance' %}" class="nav-link {% if request.path == admin_view_attendance %} active {% endif %}">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 View Attendance
-                <span class="right badge badge-danger">New</span>
+                
               </p>
             </a>
           </li>

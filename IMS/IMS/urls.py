@@ -57,6 +57,9 @@ urlpatterns = [
     path('student_feedback_message_replied',HodViews.student_feedback_message_replied, name='student_feedback_message_replied'),
     path('staff_feedback_message',HodViews.staff_feedback_message, name='staff_feedback_message'),
     path('staff_feedback_message_replied',HodViews.staff_feedback_message_replied, name='staff_feedback_message_replied'),
+    path('admin_view_attendance',HodViews.admin_view_attendance, name='admin_view_attendance'),
+    path('admin_get_attendance_dates',HodViews.admin_get_attendance_dates, name='admin_get_attendance_dates'),
+    path('admin_get_attendance_student',HodViews.admin_get_attendance_student, name='admin_get_attendance_student'),
 
 
     #Staff URL Path
