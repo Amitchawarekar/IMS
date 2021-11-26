@@ -31,6 +31,7 @@ My error is while i am fetching data from my database for my piechart on student
 create database IMS in mysql(phpmyadmin)
 <h2>Please write these commands before running these commands</h2>
 1. python manage.py makemigrations IMS_app
+
 2. python manage.py migrate
 
 
