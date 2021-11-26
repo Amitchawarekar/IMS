@@ -13,7 +13,7 @@ My error is while i am fetching data from my database for my piechart on student
 
 
 
-<h2>Please StudentViews.py also as I have fetch the data from there. </h2>
+<h2>Please check StudentViews.py also as I have fetch the data from there. </h2>
 
 "IMS\IMS\IMS_app\StudentViews.py "
 
