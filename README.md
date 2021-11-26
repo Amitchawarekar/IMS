@@ -2,7 +2,7 @@
 It is a django project for Institute management.
 
 
-MY Error :
+<h2>MY Error : </h2>
 My error is while i am fetching data from my database for my piechart on student home page I am getting "Property assigment expected", "Argument expression expected".
 
 
