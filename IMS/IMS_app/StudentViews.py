@@ -8,7 +8,14 @@ from django.views.decorators.csrf import csrf_exempt
 from IMS_app.models import FeedBackStudent, Subjects, Students, Courses, CustomUser, Attendance, AttendanceReport
 
 def student_home(request):
-    return render(request,"student_templates/student_home_template.html")
+    student_obj = Students.objects.get(admin = request.user.id)
+    attendance_total = AttendanceReport.objects.filter(student_id = student_obj).count()
+    attendance_present= AttendanceReport.objects.filter(student_id = student_obj,status =True).count()
+    attendance_absent= AttendanceReport.objects.filter(student_id = student_obj,status =False).count()
+
+    course = Courses.objects.get(id=student_obj.course_id.id)
+    subjects= Subjects.objects.filter(course_id=course).count()
+    return render(request,"student_templates/student_home_template.html",{'attendance_total':attendance_total,'attendance_present':attendance_present,'attendance_absent':attendance_absent,'subjects':subjects})
 
 def student_view_attendance(request):
     student = Students.objects.get(admin=request.user.id)
