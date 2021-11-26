@@ -135,3 +135,6 @@ media
 
 #ignore notes
 notepad.txt
+
+#ignore .idea
+.idea
