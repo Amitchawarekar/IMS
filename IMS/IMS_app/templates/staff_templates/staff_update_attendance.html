@@ -27,6 +27,7 @@ View and Update Attendance
 
                         <div class="form-group">
                             <label>Session Duration </label>
+                            <input type="hidden" id="a_01">
                             <select class="form-control" name="session_year_id" id="session_year_id">
                                 {% for session_year in session_year_id %}
                                 <option value="{{ session_year.id }}">{{ session_year.session_start_year }} TO {{ session_year.session_end_year }}</option>
@@ -132,6 +133,8 @@ View and Update Attendance
     $("#fetch_student").click(function () {
 
         var attendance_date = $("#attendance_date").val()
+        $("#a_01").attr('value',attendance_date);
+        alert(attendance_date)
 
         $.ajax({
             url: "{% url 'get_attendance_student' %}",
@@ -186,8 +189,10 @@ View and Update Attendance
                 return { "id": $(this).val(), "status": 0 };
             }
         }).get()
-        var attendance_date = $("#attendance_date").val();
+
         student_data = JSON.stringify(student_data)
+        var attendance_date = $("#a_01").val();
+        alert(attendance_date);
 
         $.ajax({
             url: "{% url 'save_updateattendance_data' %}",
