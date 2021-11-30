@@ -59,6 +59,12 @@ class AddStudentForm(forms.Form):
     sex=forms.ChoiceField(label="Gender",choices=gender_choice,widget=forms.Select(attrs={"class":"form-control"}))
     session_year_id=forms.ChoiceField(label="Session Duration",choices=session_list,widget=forms.Select(attrs={"class":"form-control"}))
     profile_pic=forms.FileField(label="Profile Pic",widget=forms.FileInput(attrs={"class":"form-control"}))
+    coursefees=forms.CharField(label="Course Fees",max_length=50,widget=forms.NumberInput(attrs={"class":"form-control"}))
+    amountpaid=forms.CharField(label="Amount Paid",max_length=50,widget=forms.NumberInput(attrs={"class":"form-control"}))
+    date_ap=forms.DateField(label="Date of Amount Paid",widget=DateInput(attrs={"class":"form-control"}))
+    balance=forms.CharField(label="Balance Amount",max_length=50,widget=forms.NumberInput(attrs={"class":"form-control"}))
+    cerificate_issue=forms.CharField(label="Certificate Issued",max_length=50,widget=forms.TextInput(attrs={"class":"form-control"}))
+    cerificate_issue_date=forms.DateField(label="Date of Certificate Issue",widget=DateInput(attrs={"class":"form-control"}))
 
 class EditStudentForm(forms.Form):
 

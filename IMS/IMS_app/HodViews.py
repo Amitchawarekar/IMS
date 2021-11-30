@@ -56,7 +56,9 @@ def add_course_save(request):
 
 def add_student(request):
     form = AddStudentForm()
-    return render(request, 'hod_templates/add_student_template.html',{'form':form})
+    courses =Courses.objects.all()
+    sessions = SessionYearModel.object.all()
+    return render(request, 'hod_templates/add_student_template.html',{'form':form,'courses':courses,'sessions':sessions})
 
 def add_student_save(request):
     if request.method != 'POST':
@@ -78,6 +80,13 @@ def add_student_save(request):
             session_year_id = form.cleaned_data['session_year_id']
             course_id = form.cleaned_data['course']
             sex = form.cleaned_data['sex']
+            coursefees = form.cleaned_data['coursefees']
+            amountpaid = form.cleaned_data['amountpaid']
+            date_ap = form.cleaned_data['date_ap']
+            balance = form.cleaned_data['balance']
+            cerificate_issue = form.cleaned_data['cerificate_issue']
+            cerificate_issue_date = form.cleaned_data['cerificate_issue_date']
+
 
             profile_pic=request.FILES['profile_pic']
             fs = FileSystemStorage()
@@ -98,6 +107,12 @@ def add_student_save(request):
                 user.students.date=date
                 user.students.contact=contact
                 user.students.dob=dob
+                user.students.coursefees=coursefees
+                user.students.amountpaid=amountpaid
+                user.students.date_ap=date_ap
+                user.students.balance=balance
+                user.students.cerificate_issue=cerificate_issue
+                user.students.cerificate_issue_date=cerificate_issue_date
                 user.save()
                 messages.success(request,"Successfully Added Student")
                 return HttpResponseRedirect(reverse("add_student"))
