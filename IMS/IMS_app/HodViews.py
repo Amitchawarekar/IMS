@@ -212,6 +212,12 @@ def edit_student(request,student_id):
     form.fields['dob'].initial=student.dob
     form.fields['session_year_id'].initial=student.session_year_id
     form.fields['course'].initial=student.course_id.id
+    form.fields['coursefees'].initial=student.coursefees
+    form.fields['amountpaid'].initial=student.amountpaid
+    form.fields['date_ap'].initial=student.date_ap
+    form.fields['balance'].initial=student.balance
+    form.fields['cerificate_issue'].initial=student.cerificate_issue
+    form.fields['cerificate_issue_date'].initial=student.cerificate_issue_date
     return render(request, 'hod_templates/edit_student_template.html',{"form":form,"id":student_id,"username":student.admin.username})
 
 def edit_student_save(request):
