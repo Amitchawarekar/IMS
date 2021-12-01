@@ -10,7 +10,33 @@ from django.views.decorators.csrf import csrf_exempt
 import json
 
 def admin_home(request):
-    return render(request,'hod_templates/home_content.html')
+    student_count1=Students.objects.all().count()
+    staff_count=Staffs.objects.all().count()
+    subject_count=Subjects.objects.all().count()
+    course_count=Courses.objects.all().count()
+
+    course_all=Courses.objects.all()
+    course_name_list=[]
+    subject_count_list=[]
+    student_count_list_in_course=[]
+    for course in course_all:
+        subjects=Subjects.objects.filter(course_id=course.id).count()
+        students=Students.objects.filter(course_id=course.id).count()
+        course_name_list.append(course.course_name)
+        subject_count_list.append(subjects)
+        student_count_list_in_course.append(students)
+
+    subjects_all=Subjects.objects.all()
+    subject_list=[]
+    student_count_list_in_subject=[]
+    for subject in subjects_all:
+        course=Courses.objects.get(id=subject.course_id.id)
+        student_count=Students.objects.filter(course_id=course.id).count()
+        subject_list.append(subject.subject_name)
+        student_count_list_in_subject.append(student_count)
+
+
+    return render(request,'hod_templates/home_content.html',{"student_count":student_count1,"staff_count":staff_count,"subject_count":subject_count,"course_count":course_count,'course_name_list':course_name_list,'subject_count_list':subject_count_list,'student_count_list_in_course':student_count_list_in_course,'subject_list':subject_list,'student_count_list_in_subject':student_count_list_in_subject})
 
 def add_staff(request):
     return render(request, 'hod_templates/add_staff_template.html')
