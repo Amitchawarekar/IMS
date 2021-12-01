@@ -1,90 +1,105 @@
 {% load static %}
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Institute Management System | Log in</title>
-  <!-- Tell the browser to be responsive to screen width -->
-  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="{% static "plugins/fontawesome-free/css/all.min.css" %}">
-  <!-- Ionicons -->
-  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-  <!-- icheck bootstrap -->
-  <link rel="stylesheet" href="{% static "plugins/icheck-bootstrap/icheck-bootstrap.min.css" %}">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="{% static "dist/css/adminlte.min.css" %}">
-  <!-- Google Font: Source Sans Pro -->
-  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-</head>
-<body class="hold-transition login-page">
-<div class="login-box">
-  <div class="login-logo">
-    <b>Institute</b> Management System
-  </div>
-  <!-- /.login-logo -->
-  <div class="card">
-    <div class="card-body login-card-body">
-      <p class="login-box-msg">Sign in to Insitute Management System</p>
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
 
-      <form action="/doLogin" method="post">
-          {% csrf_token %}
-        <div class="input-group mb-3">
-          <input type="email" class="form-control" placeholder="Email" name="email">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-envelope"></span>
+    <link rel="stylesheet" href="{% static "dist/fonts1/icomoon/style.css" %}">
+
+    <link rel="stylesheet" href="{% static "dist/css/owl.carousel.min.css" %}">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static "dist/css/bootstrap.min.css" %}">
+    
+    <!-- Style -->
+    <link rel="stylesheet" href="{% static "dist/css/style.css" %}">
+
+    <title>Institute Management System | Log in</title>
+    <style>
+      .message{
+        margin-top:10px; text-align:center; background: #ef5350; color: white; font-size: 16px;
+      }
+      p{
+        font-size : 30px;
+        font-display: True;
+        color : #7e57c2;
+
+      }
+    </style>
+  </head>
+  <body>
+  
+
+  
+  <div class="content">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <img src="{% static "dist/img/undraw_remotely_2j6y.svg" %}" alt="Image" width="700" height="10" class="img-fluid" >
+        </div>
+        <div class="col-md-6 contents">
+          <div class="row justify-content-center">
+            <div class="col-md-8">
+              <div class="mb-4">
+              <p class="mb-4"> <b style="">&nbsp;&nbsp;&nbsp;Institute Management &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System </b></p>
+            </div>
+            <form action="/doLogin" method="post">
+              {% csrf_token %}
+              <div class="form-group first">
+                <label for="username">Username</label>
+                <input type="email" class="form-control" placeholder="Email" name="email">
+
+              </div>
+
+
+              <div class="form-group last mb-4">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" placeholder="Password" name="password">
+                
+              </div>
+              <div class="d-flex mb-5 align-items-center">
+                <label class="control control--checkbox mb-0"><span class="caption">Remember me</span>
+                  <input type="checkbox" checked="checked"/>
+                  <div class="control__indicator"></div>
+                </label>
+                <span class="ml-auto"><a href="{% url 'password_reset' %}" class="forgot-pass">Reset Password</a></span> 
+              </div>
+              
+
+              <input type="submit" value="Sign In" class="btn btn-block btn-primary">
+
+              
+            </div>
+            </div>
+            <div class="row">
+              {% if messages %}
+             <div class="col-12">
+                {% for message in messages %}
+                {% if message.tags == 'error' %}
+                <div class="alert alert-danger message">{{ message }}</div>
+                {% endif %}
+                {% endfor %}
+              </div>
+              {% endif %}
+            </div>
+            </form>
             </div>
           </div>
+          
         </div>
-        <div class="input-group mb-3">
-          <input type="password" class="form-control" placeholder="Password" name="password">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-lock"></span>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <!-- /.col -->
-          <div class="col-12">
-            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
-          </div><!-- /.col -->
-        </div>
-
-          <div class="col-12 text-center">
-            <a href="{% url 'password_reset' %}"> Reset Password</a>
-          </div><!-- /.col -->
-        </div>
-        <div class="row">
-          {% if messages %}
-         <div class="col-12">
-            {% for message in messages %}
-            {% if message.tags == 'error' %}
-            <div class="alert alert-danger" style="margin-top:10px">{{ message }}</div>
-            {% endif %}
-            {% endfor %}
-          </div>
-          {% endif %}
-        </div>
-      </form>
-
-      <!-- /.social-auth-links -->
-
+        
+      </div>
     </div>
-    <!-- /.login-card-body -->
   </div>
-</div>
-<!-- /.login-box -->
 
-<!-- jQuery -->
-<script src="{% static "plugins/jquery/jquery.min.js" %}"></script>
-<!-- Bootstrap 4 -->
-<script src="{% static "plugins/bootstrap/js/bootstrap.bundle.min.js" %}"></script>
-<!-- AdminLTE App -->
-<script src="{% static "dist/js/adminlte.min.js" %}"></script>
-
-</body>
+  
+    <script src="{% static "dist/js/jquery-3.3.1.min.js" %}"></script>
+    <script src="{% static "dist/js/popper.min.js" %}"></script>
+    <script src="{% static "dist/js/bootstrap.min.js" %}"></script>
+    <script src="{% static "dist/js/main.js" %}"></script>
+  </body>
 </html>
