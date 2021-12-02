@@ -5,7 +5,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 from django.views.decorators.csrf import csrf_exempt
-from IMS_app.models import FeedBackStudent, Subjects, Students, Courses, CustomUser, Attendance, AttendanceReport
+from IMS_app.models import FeedBackStudent, Subjects, Students, Courses, CustomUser, Attendance, AttendanceReport, StudentResult
 
 def student_home(request):
     student_obj = Students.objects.get(admin = request.user.id)
@@ -103,3 +103,9 @@ def student_profile_save(request):
     except:
         messages.error(request, "Failed to Update Profile")
         return HttpResponseRedirect(reverse("student_profile"))
+
+
+def student_view_result(request):
+    student=Students.objects.get(admin=request.user.id)
+    studentresult=StudentResult.objects.filter(student_id=student.id)
+    return render(request, "student_templates/student_view_result.html",{"studentresult":studentresult})
