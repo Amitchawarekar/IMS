@@ -1,0 +1,93 @@
+{% extends 'hod_templates/base_template.html' %}
+{% block page_title %}
+Add Recipt
+{% endblock page_title %}
+
+{% block main_content %}
+    <!-- Main content -->
+    <!-- #form template -->
+<section class="content">
+  <div class="container-fluid">
+      <div class="row">
+          <div class="col-md-12">
+        <!-- general form elements -->
+        <div class="card card-primary">
+          <div class="card-header">
+            <h3 class="card-title">Add Recipt</h3>
+          </div>
+          <!-- /.card-header -->
+          <!-- form start -->
+          <form role="form" action="/add_student_recipt_save" method="post">
+              {% csrf_token %}
+            <div class="card-body">
+              <div class="form-group">
+                <label>Date </label>
+                <input type="date" class="form-control" name="date" placeholder="Enter Date">
+              </div>
+              <div class="form-group">
+                <label>Student Name </label>
+                <input type="text" class="form-control" name="stud_name" placeholder="Enter Student Name">
+              </div>
+              <div class="form-group">
+                <label>Course Name</label>
+                <select class="form-control" name="course">
+                    {% for course in courses %}
+                    <option value="{{ course.id }}">{{ course.course_name }}</option>
+                    {% endfor %}
+                </select>
+              </div>
+               <div class="form-group">
+                <label>Course Fee</label>
+                <input type="number" class="form-control" placeholder="Enter course Fee" name="coursefees">
+              </div>
+               <div class="form-group">
+                <label>Amount Paid</label>
+                <input type="number" class="form-control" placeholder="Enter Amount Paid" name="amountpaid">
+              </div>
+               <div class="form-group">
+                <label>Paid By</label>
+                <select class="form-control" name="paidby">
+                    <option>PhonePe</option>
+                    <option>GPay</option>
+                    <option>Net Banking</option>
+                    <option>Cash</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Balance Amount</label>
+                <input type="number" class="form-control" placeholder="Balance Amount" name="balance">
+              </div>
+                  <div class="form-group">
+                  {% if messages %}
+                    {% for message in messages %}
+                    {% if message.tags == 'error' %}
+                    <div class="alert alert-danger" style="margin-top:10px">{{ message }}</div>
+                    {% endif %}
+                    {% if message.tags == 'success' %}
+                    <div class="alert alert-success" style="margin-top:10px">{{ message }}</div>
+                    {% endif %}
+                    {% endfor %}
+                  {% endif %}
+                  </div>
+
+            </div>
+            <!-- /.card-body -->
+
+            <div class="card-footer">
+              <button type="submit" class="btn btn-primary btn-block">Add Recipt</button>
+            </div>
+          </form>
+        </div>
+        <!-- /.card -->
+
+
+
+      </div>
+      </div>
+  </div>
+</section>
+<!-- /.content -->
+{% endblock main_content %}
+
+
+

@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.core.files.storage import FileSystemStorage
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.contrib import messages
-from IMS_app.models import CustomUser,Staffs,Courses,Subjects,Students, SessionYearModel, FeedBackStudent, FeedBackStaffs, Attendance, AttendanceReport
+from IMS_app.models import CustomUser,Staffs,Courses,Subjects,Students, SessionYearModel, FeedBackStudent, FeedBackStaffs, Attendance, AttendanceReport, StudentRecipt
 from IMS_app.forms import AddStudentForm, EditStudentForm
 from django.urls import reverse
 from django.views.decorators.csrf import csrf_exempt
@@ -499,6 +499,30 @@ def admin_profile_save(request):
         except:
             messages.error(request, "Failed to Update Profile")
             return HttpResponseRedirect(reverse("admin_profile"))
+
+def add_student_recipt(request):
+    courses =Courses.objects.all()
+    return render(request, 'hod_templates/add_student_recipt_template.html',{"courses":courses})
+
+def add_student_recipt_save(request):
+    if request.method != 'POST':
+        return HttpResponse("Method not allowed")
+    else:
+        date = request.POST.get('date')
+        stud_name = request.POST.get('stud_name')
+        course = request.POST.get('course')
+        coursefees = request.POST.get('coursefees')
+        amountpaid = request.POST.get('amountpaid')
+        paidby = request.POST.get('paidby')
+        balance = request.POST.get('balance')
+        try:
+            recipt = StudentRecipt(student_name=stud_name,date=date,course=course,coursefees=coursefees,amountpaid=amountpaid,paidby=paidby,balance=balance)
+            recipt.save()
+            messages.success(request,"Successfully Added Recipt")
+            return HttpResponseRedirect(reverse("add_student_recipt"))
+        except:
+            messages.error(request,"Failed to Add Recipt")
+            return HttpResponseRedirect(reverse("add_student_recipt"))
 
 
 

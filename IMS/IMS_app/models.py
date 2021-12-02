@@ -92,8 +92,8 @@ class AttendanceReport(models.Model):
 
 class StudentRecipt(models.Model):
     id = models.AutoField(primary_key=True)
-    student_id = models.ForeignKey(Students, on_delete=models.CASCADE)
-    date = models.DateTimeField(auto_now_add=True)
+    student_name = models.CharField(max_length=255,default=0)
+    date = models.DateField(auto_now_add=True)
     course = models.CharField(max_length=255)
     coursefees = models.IntegerField(max_length=255)
     amountpaid = models.IntegerField(max_length=255)
