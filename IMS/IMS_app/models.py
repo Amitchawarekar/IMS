@@ -123,23 +123,15 @@ class FeedBackStaffs(models.Model):
     objects = models.Manager()
 
 
-class NotificationStudent(models.Model):
+class StudentResult(models.Model):
     id = models.AutoField(primary_key=True)
     student_id = models.ForeignKey(Students, on_delete=models.CASCADE)
-    message = models.TextField()
+    subject_id=models.ForeignKey(Subjects,on_delete=models.CASCADE)
+    subject_obj_marks = models.FloatField(default=0)
+    subject_pract_marks = models.FloatField(default=0)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
     objects = models.Manager()
-
-
-class NotificationStaffs(models.Model):
-    id = models.AutoField(primary_key=True)
-    staff_id = models.ForeignKey(Staffs, on_delete=models.CASCADE)
-    message = models.TextField()
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now_add=True)
-    objects = models.Manager()
-
 
 @receiver(post_save,sender=CustomUser)
 def create_user_profile(sender,instance,created,**kwargs):

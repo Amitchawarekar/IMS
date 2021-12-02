@@ -77,6 +77,8 @@ urlpatterns = [
     path('staff_feedback_save',StaffViews.staff_feedback_save, name='staff_feedback_save'),
     path('staff_profile',StaffViews.staff_profile, name='staff_profile'),
     path('staff_profile_save',StaffViews.staff_profile_save, name='staff_profile_save'),
+    path('staff_add_result',StaffViews.staff_add_result, name='staff_add_result'),
+    path('save_student_result',StaffViews.save_student_result, name='save_student_result'),
 
     #Student URL Path
     path('student_home',StudentViews.student_home, name='student_home'),

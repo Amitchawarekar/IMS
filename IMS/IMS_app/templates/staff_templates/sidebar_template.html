@@ -61,6 +61,16 @@
                   </p>
                 </a>
               </li>
+
+               <li class="nav-item">
+                {% url 'staff_add_result' as staff_add_result %}
+                <a href="{{ staff_add_result }}" class="nav-link {% if request.path == staff_add_result %} active {% endif %}">
+                  <i class="nav-icon fas fa-th"></i>
+                  <p>
+                   Add Student Result
+                  </p>
+                </a>
+              </li>
                
         </ul>
       </nav>

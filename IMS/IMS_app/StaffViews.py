@@ -7,7 +7,7 @@ from django.core import serializers
 from django.urls import reverse
 from django.contrib import messages
 
-from IMS_app.models import SessionYearModel, Students, Subjects,  Attendance ,AttendanceReport, Staffs, FeedBackStaffs, CustomUser, Courses
+from IMS_app.models import SessionYearModel, Students, Subjects,  Attendance ,AttendanceReport, Staffs, FeedBackStaffs, CustomUser, Courses, StudentResult
 
 
 def staff_home(request):
@@ -209,3 +209,40 @@ def staff_profile_save(request):
     except:
         messages.error(request, "Failed to Update Profile")
         return HttpResponseRedirect(reverse("staff_profile"))
+
+def staff_add_result(request):
+    subjects=Subjects.objects.filter(staff_id=request.user.id)
+    session_years=SessionYearModel.object.all()   
+    return render(request,'staff_templates/staff_add_result_template.html',{'subjects':subjects,'session_years':session_years})
+
+def save_student_result(request):
+    if request.method!="POST":
+        return HttpResponseRedirect(reverse("staff_add_result"))
+    else:
+        student_admin_id = request.POST.get('student_list')
+        obj_marks = request.POST.get('obj_marks')
+        pract_marks = request.POST.get('pract_marks')
+        subject_id = request.POST.get('subject')
+
+        student_obj = Students.objects.get(admin=student_admin_id)
+        subject_obj = Subjects.objects.get(id=subject_id)
+
+        try:
+            check_exist = StudentResult.objects.filter(subject_id=subject_obj,student_id=student_obj).exists()
+            if check_exist:
+                result = StudentResult.objects.get(subject_id=subject_obj,student_id=student_obj)
+                result.subject_obj_marks = obj_marks
+                result.subject_pract_marks = pract_marks 
+                result.save()
+
+                messages.success(request, "Successfully Updated Student Result")
+                return HttpResponseRedirect(reverse("staff_add_result"))
+            else:
+                result = StudentResult(student_id=student_obj,subject_id=subject_obj,subject_obj_marks=obj_marks,subject_pract_marks=pract_marks)
+                result.save()
+
+                messages.success(request, "Successfully Added Student Result")
+                return HttpResponseRedirect(reverse("staff_add_result"))
+        except:
+            messages.error(request, "Failed to Add Student Result")
+            return HttpResponseRedirect(reverse("staff_add_result"))
