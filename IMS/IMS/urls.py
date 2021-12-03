@@ -65,6 +65,7 @@ urlpatterns = [
     path('admin_get_attendance_student',HodViews.admin_get_attendance_student, name='admin_get_attendance_student'),
     path('admin_profile',HodViews.admin_profile, name='admin_profile'),
     path('admin_profile_save',HodViews.admin_profile_save, name='admin_profile_save'),
+    
 
 
     #Staff URL Path

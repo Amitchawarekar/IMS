@@ -269,6 +269,12 @@ def edit_student_save(request):
             session_year_id = form.cleaned_data['session_year_id']
             course_id = form.cleaned_data['course']
             sex = form.cleaned_data['sex']
+            coursefees = form.cleaned_data['coursefees']
+            amountpaid = form.cleaned_data['amountpaid']
+            date_ap = form.cleaned_data['date_ap']
+            balance = form.cleaned_data['balance']
+            cerificate_issue = form.cleaned_data['cerificate_issue']
+            cerificate_issue_date = form.cleaned_data['cerificate_issue_date']
 
 
             if request.FILES.get('profile_pic',False):
@@ -287,7 +293,7 @@ def edit_student_save(request):
                 user.username=username
                 user.save()
 
-                student = Students.objects.get(id=student_id)
+                student = Students.objects.get(admin=student_id)
                 student.address=address
                 session_duration = SessionYearModel.object.get(id=session_year_id)
                 student.session_year_id=session_duration
@@ -302,12 +308,20 @@ def edit_student_save(request):
                 student.date=date
                 student.contact=contact
                 student.dob=dob
+                student.coursefees=coursefees
+                student.amountpaid=amountpaid
+                student.date_ap=date_ap
+                student.balance=balance
+                student.cerificate_issue=cerificate_issue
+                student.cerificate_issue_date=cerificate_issue_date
                 student.save()
 
                 del request.session['student_id']
                 messages.success(request,"Successfully Edited Student")
                 return HttpResponseRedirect(reverse("edit_student",kwargs={"student_id":student_id}))
-            except :
+            except Exception as e:
+                print (e)
+                raise e
                 messages.error(request,"Failed to Edit Student")
                 return HttpResponseRedirect(reverse("edit_student", kwargs={"student_id":student_id}))
         else:
@@ -527,6 +541,7 @@ def add_student_recipt_save(request):
 def manage_student_recipt(request):
     recipts = StudentRecipt.objects.all()
     return render(request, 'hod_templates/manage_student_recipt_template.html',{"recipts":recipts})
+
 
 
 

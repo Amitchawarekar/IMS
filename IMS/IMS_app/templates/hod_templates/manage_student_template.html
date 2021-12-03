@@ -39,9 +39,15 @@ Manage Student
                     <th>Contact No.</th>
                     <th>Date of Birth</th>
                     <th>Profile Pic</th>
-                    <th>Course Start</th>
-                    <th>Course End</th>
+                    <th>Course Duration</th>
                     <th>Course</th>
+                    <th>Course Fees</th>
+                    <th>Amount Paid</th>
+                    <th>Date of AmountPaid</th>
+                    <th>Balance</th>
+                    <th>Certificate Issued</th>
+                    <th>Certificate Issued Date</th>
+
                     <th>Last Login</th>
                     <th>Date Joined</th>
                     <th>Action</th>
@@ -61,10 +67,15 @@ Manage Student
                     <td>{{ student.gender }}</td>
                     <td>{{ student.contact }}</td>
                     <td>{{ student.dob }}</td>
-                    <td>{{ student.profile_pic }}</td>
-                    <td>{{ student.session_start_year }}</td>
-                    <td>{{ student.session_end_year }}</td>
+                    <td><img src="{{ student.profile_pic }}" style="width:100px"/></td>
+                    <td>{{ student.session_year_id.session_start_year}} TO {{ student.session_year_id.session_end_year}} </td>
                     <td>{{ student.course_id.course_name }}</td>
+                    <td>{{ student.coursefees }}</td>
+                    <td>{{ student.amountpaid }}</td>
+                    <td>{{ student.date_ap }}</td>
+                    <td>{{ student.balance }}</td>
+                    <td>{{ student.cerificate_issue }}</td>
+                    <td>{{ student.cerificate_issue_date }}</td>
                     <td>{{ student.admin.last_login }}</td>
                     <td>{{ student.admin.date_joined }}</td>
                     <td><a href="/edit_student/{{ student.admin.id }}" class="btn btn-success">Edit</a></td>
