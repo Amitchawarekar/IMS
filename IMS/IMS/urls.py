@@ -46,6 +46,7 @@ urlpatterns = [
     path('edit_student_save',HodViews.edit_student_save, name='edit_student_save'),
     path('add_student_recipt',HodViews.add_student_recipt, name='add_student_recipt'),
     path('add_student_recipt_save',HodViews.add_student_recipt_save, name='add_student_recipt_save'),
+    path('manage_student_recipt',HodViews.manage_student_recipt, name='manage_student_recipt'),
 
     path('edit_subject/<str:subject_id>',HodViews.edit_subject, name='edit_subject'),    
     path('edit_subject_save',HodViews.edit_subject_save, name='edit_subject_save'),    

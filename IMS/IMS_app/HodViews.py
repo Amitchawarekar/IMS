@@ -524,6 +524,10 @@ def add_student_recipt_save(request):
             messages.error(request,"Failed to Add Recipt")
             return HttpResponseRedirect(reverse("add_student_recipt"))
 
+def manage_student_recipt(request):
+    recipts = StudentRecipt.objects.all()
+    return render(request, 'hod_templates/manage_student_recipt_template.html',{"recipts":recipts})
+
 
 
 

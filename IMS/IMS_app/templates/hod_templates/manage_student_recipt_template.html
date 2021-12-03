@@ -1,0 +1,69 @@
+{% extends 'hod_templates/base_template.html' %}
+{% block page_title %}
+Update Student Recipt
+{% endblock page_title %}
+{% block main_content %}
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+      <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header bg-warning">
+                <h3 class="card-title ">Student Recipt Details</h3>
+  
+                <div class="card-tools">
+                  <div class="input-group input-group-sm" style="width: 150px;">
+                    <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+  
+                    <div class="input-group-append">
+                      <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body table-responsive p-0">
+                <table class="table table-hover text-nowrap">
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Date</th>
+                      <th>Student Name</th>
+                      <th>Course Name</th>
+                      <th>Course Fee</th>
+                      <th>Amount Paid</th>
+                      <th>Paid By</th>
+                      <th>Balance Amount</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                      {% for recipt in recipts %}
+                    <tr>
+                      <td>{{ recipt.id}}</td>
+                      <td>{{ recipt.date}}</td>
+                      <td>{{ recipt.student_name}}</td>
+                      <td>{{ recipt.course}}</td>
+                      <td>{{ recipt.coursefees}}</td>
+                      <td>{{ recipt.amountpaid}}</td>
+                      <td>{{ recipt.paidby}}</td>
+                      <td>{{ recipt.balance}}</td>
+                      <td><a href="/edit_staff/{{ staff.admin.id }}" class="btn btn-success">View</a></td>
+                     </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+  
+  
+  
+      
+    </div>
+  </section>
+  <!-- /.content -->
+  {% endblock main_content %}
