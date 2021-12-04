@@ -1,10 +1,14 @@
 {% load static %}
+<style>
+  p{
+    font-size:17px;
+  }
+</style>
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="" class="brand-link">
-      <img src="{ % static "dist/img/AdminLTELogo.png" %}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
-           style="opacity: .8">
-      <span class="brand-text font-weight-light">AdminLTE 3</span>
+      <img src="{% static "dist/img/icon.ico"  %}"  class="brand-image img-circle elevation-3" alt="IMS Logo" >
+      <span class="brand-text font-weight-light"> IMS </span>
     </a>
 
     <!-- Sidebar -->
@@ -23,16 +27,18 @@
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->  
+               with font-awesome or any other icon font library --> 
                <li class="nav-item">
                 {% url 'staff_home' as staff_home %}
                 <a href="{{ staff_home }}" class="nav-link {% if request.path == staff_home %} active {% endif %}">
                   <i class="nav-icon fas fa-th"></i>
                   <p>
-                    Home 
+                    Dashboard
                   </p>
                 </a>
               </li>
+
+               
                <li class="nav-item">
                 {% url 'staff_take_attendance' as staff_take_attendance %}
                 <a href="{{ staff_take_attendance }}" class="nav-link {% if request.path == staff_take_attendance %} active {% endif %}">
