@@ -8,10 +8,10 @@ from IMS_app.forms import AddStudentForm, EditStudentForm
 from django.urls import reverse
 from django.views.decorators.csrf import csrf_exempt
 import json
-from .utils import render_to_pdf
-from django.template.loader import get_template
-import datetime
-from django.views.generic import View
+# from .utils import render_to_pdf
+# from django.template.loader import get_template
+# import datetime
+# from django.views.generic import View
 
 def admin_home(request):
     student_count1=Students.objects.all().count()
