@@ -19,6 +19,14 @@ Add Recipt
 
 
 </style>
+<script>
+  function clickhandler(){
+    const coursefees = document.querySelector("#coursefees").value;
+    const amountpaid = document.querySelector("#amountpaid").value;
+    document.querySelector("#balance").value = coursefees - amountpaid;
+
+  }
+</script>
     <!-- Main content -->
     <!-- #form template -->
 <section class="content">
@@ -53,11 +61,11 @@ Add Recipt
               </div>
                <div class="form-group">
                 <label>Course Fee</label>
-                <input type="number" class="form-control" placeholder="Enter course Fee" name="coursefees">
+                <input type="number" class="form-control" placeholder="Enter course Fee" name="coursefees" id="coursefees">
               </div>
                <div class="form-group">
                 <label>Amount Paid</label>
-                <input type="number" class="form-control" placeholder="Enter Amount Paid" name="amountpaid">
+                <input type="number" class="form-control" placeholder="Enter Amount Paid" name="amountpaid" id="amountpaid" onfocusout="clickhandler()">
               </div>
                <div class="form-group">
                 <label>Paid By</label>
@@ -70,7 +78,7 @@ Add Recipt
               </div>
               <div class="form-group">
                 <label>Balance Amount</label>
-                <input type="number" class="form-control" placeholder="Balance Amount" name="balance">
+                <input type="number" class="form-control" placeholder="Balance Amount" name="balance" id="balance">
               </div>
                   <div class="form-group">
                   {% if messages %}

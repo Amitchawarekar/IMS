@@ -110,10 +110,10 @@ def add_student_save(request):
             session_year_id = form.cleaned_data['session_year_id']
             course_id = form.cleaned_data['course']
             sex = form.cleaned_data['sex']
-            coursefees = form.cleaned_data['coursefees']
-            amountpaid = form.cleaned_data['amountpaid']
-            date_ap = form.cleaned_data['date_ap']
-            balance = form.cleaned_data['balance']
+            coursefees =  request.POST.get('coursefees')
+            amountpaid =  request.POST.get('amountpaid')
+            date_ap =  request.POST.get('date_ap')
+            balance =  request.POST.get('balance')
             cerificate_issue = form.cleaned_data['cerificate_issue']
             cerificate_issue_date = form.cleaned_data['cerificate_issue_date']
 

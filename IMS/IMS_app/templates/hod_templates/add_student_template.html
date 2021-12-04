@@ -31,8 +31,9 @@ Add Student
                     <!-- /.card-header -->
                     <!-- form start -->
                     {% url 'add_student_save' as action_path %}
-                    {% include 'hod_templates/form_template.html' with messages=messages form=form action_path=action_path button_text="Add Student"%}
-
+                    {% include 'hod_templates/form_template_add_student.html' with messages=messages form=form action_path=action_path button_text="Add Student"%}
+                    
+                    
 
 
                 </div>

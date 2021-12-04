@@ -1,0 +1,57 @@
+<form role="form" action="{{ action_path }}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="card-body">
+        {% for field in form %}
+        <div class="form-group">
+            {{ field.errors }}
+            {{ field.label_tag }}
+            {{ field }}
+        </div>
+        
+        {% endfor %}
+        <div class="form-group">
+            <label>Course Fee</label>
+            <input type="number" class="form-control" placeholder="Enter course Fee" name="coursefees" id="coursefees">
+          </div>
+           <div class="form-group">
+            <label>Amount Paid</label>
+            <input type="number" class="form-control" placeholder="Enter Amount Paid" name="amountpaid" id="amountpaid" onfocusout="clickhandler()">
+          </div>
+           <div class="form-group">
+            <label>Date of Amount Paid</label>
+            <input type="date" class="form-control"  name="date_ap">
+          </div>
+           
+          <div class="form-group">
+            <label>Balance Amount</label>
+            <input type="number" class="form-control" placeholder="Balance Amount" name="balance" id="balance">
+          </div>
+
+        <div class="form-group">
+            {% if messages %}
+            {% for message in messages %}
+            {% if message.tags == 'error' %}
+            <div class="alert alert-danger" style="margin-top:10px">{{ message }}</div>
+            {% endif %}
+            {% if message.tags == 'success' %}
+            <div class="alert alert-success" style="margin-top:10px">{{ message }}</div>
+            {% endif %}
+            {% endfor %}
+            {% endif %}
+        </div>
+
+    </div>
+    <!-- /.card-body -->
+
+    <div class="card-footer">
+        <button type="submit" class="btn btn-primary btn-block">{{ button_text }}</button>
+    </div>
+</form>
+<script>
+    function clickhandler(){
+      const coursefees = document.querySelector("#coursefees").value;
+      const amountpaid = document.querySelector("#amountpaid").value;
+      document.querySelector("#balance").value = coursefees - amountpaid;
+  
+    }
+  </script>
