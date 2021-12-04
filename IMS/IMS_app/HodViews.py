@@ -8,6 +8,10 @@ from IMS_app.forms import AddStudentForm, EditStudentForm
 from django.urls import reverse
 from django.views.decorators.csrf import csrf_exempt
 import json
+from .utils import render_to_pdf
+from django.template.loader import get_template
+import datetime
+from django.views.generic import View
 
 def admin_home(request):
     student_count1=Students.objects.all().count()
@@ -540,8 +544,37 @@ def add_student_recipt_save(request):
 
 def manage_student_recipt(request):
     recipts = StudentRecipt.objects.all()
+   
     return render(request, 'hod_templates/manage_student_recipt_template.html',{"recipts":recipts})
 
+# def edit_student_recipt(request, recipt_id):
+#     recipt_ids = StudentRecipt.objects.get(id=recipt_id)
+#     return render(request, 'hod_templates/recipt.html',{"recipt_ids":recipt_ids,"id":recipt_id})
+
+
+# class GeneratePdf(View):
+#     def get(self, request, *args, **kwargs):
+#         recipt_id = request.POST.get('recipt_id')
+#         print(recipt_id)
+#         template = get_template('recipt.html')
+#         context = {
+#             "invoice_id": recipt_id,
+#             "customer_name": "John Cooper",
+#             "amount": 1399.99,
+#             "today": "Today",
+#         }
+#         html = template.render(context)
+#         pdf = render_to_pdf('recipt.html', context)
+#         if pdf:
+#             response = HttpResponse(pdf, content_type='application/pdf')
+#             filename = "Invoice_%s.pdf" %("12341231")
+#             content = "inline; filename='%s'" %(filename)
+#             download = request.GET.get("download")
+#             if download:
+#                 content = "attachment; filename='%s'" %(filename)
+#             response['Content-Disposition'] = content
+#             return response
+#         return HttpResponse("Not found")
 
 
 
