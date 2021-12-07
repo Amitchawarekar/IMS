@@ -135,8 +135,7 @@ how to solve those by doing research and I overcome the challenge.
 
 ## Screenshots
 
-![Demo]("screenshots/1.png")
-
-<img src="screenshots/1.png" alt="and" width="500" height="600">
+<h5>Login Page
+<img src="screenshots/login_page.png" alt="login_page" width="800" height="400">
 
 
