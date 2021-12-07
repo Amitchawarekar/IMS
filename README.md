@@ -1,3 +1,4 @@
+
 # INSTITUTE MANAGEMENT SYSTEM
 
 Institute Management System is a Web Application designed using Django Framework.
@@ -57,6 +58,13 @@ This Project has 3 Panels (Admin Panel, Staff Panel, Student Panel).
 - Student Attendance Management Functionality
 - Student Result Management Functionality
 - Student Fee Recipt Management Functionality
+
+## Deployment 
+I have deployed this project on heroku with sqlite3 database
+
+Link :- 
+[IMS](https://institutemanagementsystem05.herokuapp.com/)
+
 
 ## Acknowledgements
 
@@ -129,14 +137,6 @@ how to solve those by doing research and I overcome the challenge.
 
 ![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
 
-
-## Deployment
-
-To deploy this project run
-
-```bash
-  npm run deploy
-```
 
 
 
