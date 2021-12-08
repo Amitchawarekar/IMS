@@ -9,10 +9,11 @@ Any Educational Institute can use this project for Student and Staff Management 
 
 - [Brief Description](#BriefDescription)
 - [Features](#Features)
+- [DeploymentLink](#Deployment)
 - [Acknowlegements](#Acknowlegements)
 - [License](#License)
 - [Lessons](#Lessons)
-- [Run Locally](#RunLocally)
+- [RunLocally](#RunLocally)
 - [Screenshots](#Screenshots)
 ## Brief Description
 
