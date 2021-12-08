@@ -135,7 +135,16 @@ how to solve those by doing research and I overcome the challenge.
 
 ## Screenshots
 
-<h5>Login Page
-<img src="screenshots/login_page.png" alt="login_page" width="800" height="400">
+<h4>Login Page</h4>
+<img src="screenshots/login_page.png" alt="login_page" width="850" height="350">
+
+<h4>Admin Home Page</h4>
+<img src="screenshots/admin_page.png" alt="admin_page" width="850" height="350">
+
+<h4>Staff Home Page</h4>
+<img src="screenshots/staff_page.png" alt="staff_page" width="850" height="350">
+
+<h4>Student Home Page</h4>
+<img src="screenshots/student_page.png" alt="student_page" width="850" height="350">
 
 
