@@ -66,6 +66,9 @@ I have deployed this project on heroku with sqlite3 database
 Link :- 
 [IMS](https://institutemanagementsystem05.herokuapp.com/)
 
+Deployed Code Repo link :- 
+[IMS_heroku](https://github.com/Amitchawarekar/IMS_heroku)
+
 
 ## Acknowledgements
 
