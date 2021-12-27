@@ -324,8 +324,6 @@ def edit_student_save(request):
                 messages.success(request,"Successfully Edited Student")
                 return HttpResponseRedirect(reverse("edit_student",kwargs={"student_id":student_id}))
             except Exception as e:
-                print (e)
-                raise e
                 messages.error(request,"Failed to Edit Student")
                 return HttpResponseRedirect(reverse("edit_student", kwargs={"student_id":student_id}))
         else:
