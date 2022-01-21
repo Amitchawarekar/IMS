@@ -83,20 +83,27 @@ WSGI_APPLICATION = 'IMS.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'ims',
-        'USER': 'root',
-        'PASSWORD': '',
-        'HOST' : '127.0.0.1',
-        'PORT' : '3306',
-        'OPTIONS' : {
-            'init_command': 'SET default_storage_engine=INNODB'
-        } 
+        'ENGINE': 'djongo',
+        'NAME': 'IMS',
+        
+        }
+    }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'ims',
+#         'USER': 'root',
+#         'PASSWORD': '',
+#         'HOST' : '127.0.0.1',
+#         'PORT' : '3306',
+#         'OPTIONS' : {
+#             'init_command': 'SET default_storage_engine=INNODB'
+#         } 
         # 'ENGINE': 'django.db.backends.sqlite3',
         # 'NAME': BASE_DIR / 'db.sqlite3',
 
-    }
-}
+
 
 
 # Password validation
